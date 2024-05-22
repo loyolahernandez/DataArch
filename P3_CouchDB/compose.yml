@@ -1,0 +1,11 @@
+services:
+  couch-db:
+    image: couchdb:3.3.3
+    restart: unless-stopped
+    environment:
+      - COUCHDB_USER=administrador
+      - COUCHDB_PASSWORD=passwordAdministrador
+    ports:
+      - "5984:5984"
+    volumes:
+      - ./db-sin-replicacion:/opt/couchdb/data

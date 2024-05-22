@@ -1,0 +1,37 @@
+Practica 3
+CouchDB
+
+Es una base de datos no relacional (NoSQL), con API http y con replicación (en caso que se caiga la app, para no perder información).
+
+Todos los registros son documentos (JSON)
+Escalabilidad horizontal
+Flexibilidad (no hay esquema pre definido)
+
+Actividad 1
+Usar CouchDB en un contenedor Docker
+
+	1 Descargar imagen
+
+	2 Correr contenedor
+
+	3 Crear archivo compose.yml
+		a) servicio para el db
+		b) exponer puertos para conectarse
+		c) variables de entorno: usuario y contraseña.
+		d) tener un volumen montado en /opt/couchdb/data
+
+	4 Construir y correr el compose
+	bash-3.2$ docker compose -f compose.yml build
+	bash-3.2$ docker compose -f compose.yml up
+	
+	5 Acceder a couchdb de forma local
+	localhost:5984/_utils/#login
+		a) Acceder con usuario y password del compost
+		b) Crear base de datos
+
+	6 Carga masiva de datos desde un .json
+	bash-3.2$ ls
+	Film.JSON		compose.yml		db-sin-replicacion
+	bash-3.2$ curl -X POST -d @Film.JSON -H "Content-Type: application/json" “http://administrador:passwordAdministrador@localhost:5984/testdb/_bulk_docs"
+
+	7 Hacer peticiones con Postman
